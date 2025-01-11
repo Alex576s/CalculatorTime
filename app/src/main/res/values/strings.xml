@@ -6,4 +6,7 @@
     <string name="sum">Сложить</string>
     <string name="time2">Введите время 2 (например, 1m44s)</string>
     <string name="time1">Введите время 1 (например, 1h23m32s)</string>
+    <string name="reset">Reset</string>
+    <string name="exit">Exit</string>
+
 </resources>

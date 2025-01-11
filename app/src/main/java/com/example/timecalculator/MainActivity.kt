@@ -1,14 +1,18 @@
 package com.example.timecalculator
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var toolbarMain: androidx.appcompat.widget.Toolbar
     private lateinit var inputTime1: EditText
     private lateinit var inputTime2: EditText
     private lateinit var resultTextView: TextView
@@ -17,9 +21,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        inputTime1 = this.findViewById(R.id.inputTime1)
+        toolbarMain = findViewById(R.id.toolbarMain)
+        setSupportActionBar(toolbarMain)
+        title = "Калькулятор"
+        toolbarMain.subtitle = "Версия 1"
+        toolbarMain.setLogo(R.drawable.ic_calculate)
+
+        inputTime1 = findViewById(R.id.inputTime1)
         inputTime2 = findViewById(R.id.inputTime2)
+
         resultTextView = findViewById(R.id.resultTextView)
+
 
         val buttonAdd: Button = findViewById(R.id.buttonAdd)
         val buttonSubtract: Button = findViewById(R.id.buttonSubtract)
@@ -29,6 +41,12 @@ class MainActivity : AppCompatActivity() {
             val time2 = inputTime2.text.toString()
             val result = addTime(time1, time2)
             resultTextView.text = "Результат сложения: $result"
+            Toast.makeText(
+                applicationContext,
+                "Результат $result",
+                Toast.LENGTH_LONG
+            ).show()
+
         }
 
         buttonSubtract.setOnClickListener {
@@ -36,10 +54,48 @@ class MainActivity : AppCompatActivity() {
             val time2 = inputTime2.text.toString()
             val result = subtractTime(time1, time2)
             resultTextView.text = "Результат вычитания: $result"
+
+            val toast = Toast.makeText(
+                applicationContext,
+                "Результат $result",
+                Toast.LENGTH_LONG
+            ).show()
+
         }
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.resetMenuMain -> {
+                inputTime1.text.clear()
+                inputTime2.text.clear()
+                resultTextView.text = "Результат"
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "Данные очищены",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+            R.id.exitMenuMain -> {
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "Работа завершена",
+                    Toast.LENGTH_LONG
+                ).show()
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
+
 fun timeToSeconds(timeStr: String): Int {
     var totalSeconds = 0
     val regex = Regex("(\\d+)([hms])")

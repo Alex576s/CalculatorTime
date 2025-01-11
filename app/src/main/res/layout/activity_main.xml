@@ -1,44 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="8dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/white"/>
 
     <EditText
         android:id="@+id/inputTime1"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:hint="@string/time1"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/inputTime2"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:hint="@string/time2"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="@string/sum"/>
+        android:backgroundTint="#008000"
+        android:text="@string/sum" />
 
     <Button
         android:id="@+id/buttonSubtract"
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="@string/dif"/>
+        android:backgroundTint="#008000"
+        android:text="@string/dif" />
 
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/result"
+        android:paddingTop="16dp"
+        android:hint="@string/result"
+        android:textColorHint="@color/black"
+        android:text=""
         android:textSize="18sp"
-        android:paddingTop="16dp"/>
+        android:textColor="@color/output"/>
 
 
 </LinearLayout>
